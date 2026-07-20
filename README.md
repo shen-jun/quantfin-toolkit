@@ -6,6 +6,10 @@ I started this as a way to consolidate a pile of one-off tutorial scripts into s
 
 It is not a production risk system and isn't trying to be one - there's no live market data feed, no database layer, and the numerical methods are chosen for clarity over raw performance. What it does aim to get right is the math: every formula is either derived in the docstring or backed by a closed-form identity that's checked in the test suite.
 
+## Notes
+
+[`docs/quantfin_toolkit_notes.pdf`](docs/quantfin_toolkit_notes.pdf) walks through the math and the code for every module in this repository: the derivation behind each formula, how it maps onto the implementation, how to run the corresponding example script, and a few design decisions and bugs I ran into along the way. The LaTeX source is in the same folder if you want to see how it's built or compile it yourself.
+
 ## Why no SciPy
 
 Everything statistical here - the normal CDF/PDF, the inverse normal CDF, chi-square CDFs, portfolio optimization - is implemented from scratch in plain NumPy rather than imported from `scipy.stats` / `scipy.optimize`. That started out as a constraint (no SciPy available in the environment I first wrote this in) but I kept it that way on purpose: writing Acklam's rational approximation for the inverse normal CDF, or deriving the closed-form KKT solution to the Markowitz problem instead of calling a generic optimizer, forces you to actually understand the method rather than trust a library. The tradeoff is that this code is not as numerically robust or fast as SciPy for edge cases - if you need that, swap the calls in `quantfin/_numerics.py` and `quantfin/portfolio.py` for the SciPy equivalents.
@@ -42,6 +46,7 @@ quantfin/
 
 tests/       One test file per module, using the standard library's unittest
 examples/    One runnable script per topic area, e.g. run_option_pricing.py
+docs/        quantfin_toolkit_notes.pdf (+ .tex source) - math and code walkthrough
 ```
 
 ## Installation
@@ -105,3 +110,7 @@ The tests aren't just smoke tests - most modules are checked against known close
 - The short-rate lattice in `fixed_income.py` uses a simplified forward-rate-based drift rather than a fully calibrated Ho-Lee or Black-Derman-Toy tree. It reproduces the input yield curve correctly but isn't meant as a production term-structure model.
 - `eigenvalue_diagnostics` in `covariance.py` reports condition number and extreme eigenvalues as a diagnostic, not a full eigenfactor/optimization-bias correction - it's there to flag when a covariance matrix is heading into ill-conditioned territory, not to fix it automatically.
 - Transaction costs in `portfolio.py` are modeled as quadratic in trade size, which keeps the optimization closed-form but is a simplification of real (often piecewise-linear, with a fixed component) trading cost.
+
+## License
+
+MIT
