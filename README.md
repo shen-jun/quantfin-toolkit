@@ -8,7 +8,7 @@ It is not a production risk system and isn't trying to be one - there's no live 
 
 ## Notes
 
-[`docs/quantfin_toolkit_notes.pdf`](docs/quantfin_toolkit_notes.pdf) walks through the math and the code for every module in this repository: the derivation behind each formula, how it maps onto the implementation, how to run the corresponding example script, and a few design decisions and bugs I ran into along the way. The LaTeX source is in the same folder if you want to see how it's built or compile it yourself.
+[`docs/Notes.pdf`](https://github.com/shen-jun/quantfin-toolkit/blob/main/Notes.pdf) walks through the math and the code for every module in this repository: the derivation behind each formula, how it maps onto the implementation, how to run the corresponding example script, and a few design decisions and bugs I ran into along the way. The LaTeX source is in the same folder if you want to see how it's built or compile it yourself.
 
 ## Why no SciPy
 
