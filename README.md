@@ -110,7 +110,3 @@ The tests aren't just smoke tests - most modules are checked against known close
 - The short-rate lattice in `fixed_income.py` uses a simplified forward-rate-based drift rather than a fully calibrated Ho-Lee or Black-Derman-Toy tree. It reproduces the input yield curve correctly but isn't meant as a production term-structure model.
 - `eigenvalue_diagnostics` in `covariance.py` reports condition number and extreme eigenvalues as a diagnostic, not a full eigenfactor/optimization-bias correction - it's there to flag when a covariance matrix is heading into ill-conditioned territory, not to fix it automatically.
 - Transaction costs in `portfolio.py` are modeled as quadratic in trade size, which keeps the optimization closed-form but is a simplification of real (often piecewise-linear, with a fixed component) trading cost.
-
-## License
-
-MIT
